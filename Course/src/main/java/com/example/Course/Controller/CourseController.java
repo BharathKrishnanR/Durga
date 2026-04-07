@@ -2,6 +2,7 @@ package com.example.Course.Controller;
 
 import com.example.Course.Service.CourseService;
 import com.example.Course.entity.Course;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,5 +30,11 @@ public class CourseController {
     @GetMapping("/{id}")
     public Course getById(@PathVariable Long id) {
         return courseService.getById(id);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCourse(@PathVariable Long id) {
+        courseService.deleteCourse(id);
+        return ResponseEntity.ok("Course deleted successfully with id: " + id);
     }
 }

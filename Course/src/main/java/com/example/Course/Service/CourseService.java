@@ -26,4 +26,11 @@ public class CourseService {
         return courseRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Course not found"));
     }
+
+    public void deleteCourse(Long id) {
+        if (!courseRepository.existsById(id)) {
+            throw new RuntimeException("Course not found with id: " + id);
+        }
+        courseRepository.deleteById(id);
+    }
 }
